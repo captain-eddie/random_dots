@@ -8,13 +8,19 @@ import pygame as pg
 import constants
 
 def main():
+    #   variables and things and stuff
+    circle_pos = (250, 250)
+    circle_radius = 150.0
+    circle_width = 2
+
+    #   initialize pygame window
     pg.init()
 
     #   program window
-    window = pg.display.set_mode((100, 100))
+    window = pg.display.set_mode((500, 500))
 
     #   draw circle
-    pg.draw.circle(window, constants.WHITE, (50, 50), 10.0)
+    pg.draw.circle(window, constants.CIRCLE_COLOR, circle_pos, circle_radius, circle_width)
 
     #   main window loop
     while True:
