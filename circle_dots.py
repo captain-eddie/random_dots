@@ -27,6 +27,10 @@ def draw_dots_cartesian(window):
     
     pg.draw.circle(window, constants.BLUE, (x, y), dot_radius)
 
+    #   inscribed circle in square
+    sqaure = pg.Rect((100, 100), (300, 300))
+    pg.draw.rect(window, constants.WHITE, sqaure, circle_width)
+
     #   to keep track of each dot
     return 1
 
