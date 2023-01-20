@@ -6,6 +6,7 @@ Edward Abel-Guobadia
 
 import pygame as pg
 import constants
+from sys import exit
 
 def draw_dots_cartesian():
     '''
