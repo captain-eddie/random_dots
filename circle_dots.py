@@ -11,7 +11,7 @@ from time import sleep
 
 
 #   variables and things and stuff
-circle_pos = (250, 250)
+circle_center = (250, 250)
 circle_radius = 150.0
 circle_width = 2
 window_size = (500, 500)
@@ -22,10 +22,9 @@ def draw_dots_cartesian(window):
         given the region of the window that is enclosed by the circle
         draw BLUE dots at random locations in the circle using cartesian coordinates
     '''
-    x = uniform(circle_radius + circle_width * dot_radius, circle_pos[1] + circle_radius - circle_width * dot_radius)
-    y = uniform(circle_radius + circle_width * dot_radius, circle_pos[1] + circle_radius - circle_width * dot_radius)
-    #   x left = 0 + circle radius || x right = circle pos + circle radius
-    #   y top = 0 + circle radius || y bottom = circle pos + circle radius
+    x = uniform(circle_radius + circle_width * dot_radius, circle_center[1] + circle_radius - circle_width * dot_radius)
+    y = uniform(circle_radius + circle_width * dot_radius, circle_center[1] + circle_radius - circle_width * dot_radius)
+    
     pg.draw.circle(window, constants.BLUE, (x, y), dot_radius)
 
     #   to keep track of each dot
@@ -46,9 +45,9 @@ def main():
     window = pg.display.set_mode(window_size)
 
     #   draw circle
-    pg.draw.circle(window, constants.CIRCLE_COLOR, circle_pos, circle_radius, circle_width)
+    pg.draw.circle(window, constants.CIRCLE_COLOR, circle_center, circle_radius, circle_width)
     #   circle hitbox
-    pg.Rect(circle_pos[0], circle_pos[1], circle_width, circle_radius)
+    pg.Rect(circle_center[0], circle_center[1], circle_width, circle_radius)
 
 
     num_dots = 0
