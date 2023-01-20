@@ -6,14 +6,30 @@ Edward Abel-Guobadia
 
 import pygame as pg
 import constants
-from sys import exit
+from random import uniform
+from time import sleep
 
-def draw_dots_cartesian():
+
+#   variables and things and stuff
+circle_pos = (250, 250)
+circle_radius = 150.0
+circle_width = 2
+window_size = (500, 500)
+dot_radius = 2.0
+
+def draw_dots_cartesian(window):
     '''
         given the region of the window that is enclosed by the circle
         draw BLUE dots at random locations in the circle using cartesian coordinates
     '''
-    pass
+    x = uniform(circle_radius + circle_width * dot_radius, circle_pos[1] + circle_radius - circle_width * dot_radius)
+    y = uniform(circle_radius + circle_width * dot_radius, circle_pos[1] + circle_radius - circle_width * dot_radius)
+    #   x left = 0 + circle radius || x right = circle pos + circle radius
+    #   y top = 0 + circle radius || y bottom = circle pos + circle radius
+    pg.draw.circle(window, constants.BLUE, (x, y), dot_radius)
+
+    #   to keep track of each dot
+    return 1
 
 def draw_dots_polar():
     '''
@@ -23,12 +39,6 @@ def draw_dots_polar():
     pass
 
 def main():
-    #   variables and things and stuff
-    circle_pos = (250, 250)
-    circle_radius = 150.0
-    circle_width = 2
-    window_size = (500, 500)
-
     #   initialize pygame window
     pg.init()
 
@@ -41,9 +51,17 @@ def main():
     pg.Rect(circle_pos[0], circle_pos[1], circle_width, circle_radius)
 
 
+    num_dots = 0
     #   main window loop
     while True:
         pg.display.update()
+
+        #   draws the random points
+        num_dots += draw_dots_cartesian(window)
+        #   if there are 1000 dots stop making new dots then terminate program
+        if num_dots == 1000:
+            sleep(10.0)
+            exit()
 
         #   window event handler
         for event in pg.event.get():

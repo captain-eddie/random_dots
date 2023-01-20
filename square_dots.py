@@ -3,6 +3,7 @@
 Edward Abel Guobadia
 1-20-2023
 '''
+#   TODO dots can overlap, need to make it so dots cannot overlap
 
 import pygame as pg
 import constants
