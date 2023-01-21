@@ -16,20 +16,23 @@ circle_radius = 150.0
 circle_width = 2
 window_size = (500, 500)
 dot_radius = 2.0
+square_left_top = (circle_center[1] - circle_radius, circle_center[1] - circle_radius)
+square_width_height = (2 * circle_radius, 2 * circle_radius)
 
 def draw_dots_cartesian(window):
     '''
         given the region of the window that is enclosed by the circle
         draw BLUE dots at random locations in the circle using cartesian coordinates
     '''
-    x = uniform(circle_radius + circle_width * dot_radius, circle_center[1] + circle_radius - circle_width * dot_radius)
-    y = uniform(circle_radius + circle_width * dot_radius, circle_center[1] + circle_radius - circle_width * dot_radius)
-    
-    pg.draw.circle(window, constants.BLUE, (x, y), dot_radius)
-
-    #   inscribed circle in square
-    sqaure = pg.Rect((100, 100), (300, 300))
+    #   inscribe circle in square
+    sqaure = pg.Rect(square_left_top, square_width_height)
     pg.draw.rect(window, constants.WHITE, sqaure, circle_width)
+
+    #   random variables
+    x = uniform(square_left_top[0], square_left_top[0] + square_width_height[0])
+    y = uniform(square_left_top[1], square_left_top[1] + square_width_height[1])
+
+    pg.draw.circle(window, constants.BLUE, (x, y), dot_radius)
 
     #   to keep track of each dot
     return 1
