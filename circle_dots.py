@@ -44,7 +44,7 @@ def draw_dots_cartesian(window, region, region_radius):
 
     distance_vector = (x - circle_center[0], y - circle_center[1])
     distance = sqrt(pow(distance_vector[0], 2) + pow(distance_vector[1], 2))
-    if distance > circle_radius + dot_radius:
+    if distance > circle_radius - dot_radius - circle_width:
         dot = pg.draw.circle(window, constants.BLACK, (x, y), 0.0)
     else:
         dot = pg.draw.circle(window, constants.BLUE, (x, y), dot_radius)
