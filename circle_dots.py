@@ -8,7 +8,7 @@ import pygame as pg
 import constants
 from random import uniform
 from time import sleep
-from math import sqrt, pow
+from math import sqrt, pow, acos as arccos, pi
 
 
 #   variables and things and stuff
@@ -20,7 +20,7 @@ dot_radius = 2.0
 square_left_top = (circle_center[1] - circle_radius, circle_center[1] - circle_radius)
 square_width_height = (2 * circle_radius, 2 * circle_radius)
 
-def draw_dots_cartesian(window, region, region_radius):
+def draw_dots_cartesian(window):
     '''
         given the region of the window that is enclosed by the circle
         draw BLUE dots at random locations in the circle using cartesian coordinates
@@ -52,12 +52,31 @@ def draw_dots_cartesian(window, region, region_radius):
     #   to keep track of each dot
     return 1
 
-def draw_dots_polar():
+def draw_dots_polar(window):
     '''
         given the region of the window that is enclosed by the circle
         draw RED dots at random locations in the circle using polar coordinates
     '''
     pass
+
+def rect_to_polar(rect_coordinate):
+    '''
+        given cartestian coordinate convert to polar coordinate
+    '''
+    x = rect_coordinate[0]
+    y = rect_coordinate[1]
+
+    r = sqrt(pow(x, 2) + pow(y, 2))
+    theta = radians_to_deg(arccos(x / r))
+
+    polar_coordinate = (r, theta)
+
+    return polar_coordinate
+
+def radians_to_deg(angle):
+    deg_angle = angle * (180 / pi)
+
+    return deg_angle
 
 def main():
     #   initialize pygame window
@@ -74,11 +93,12 @@ def main():
 
     num_dots = 0
     #   main window loop
+    print(rect_to_polar((10, 3)))
     while True:
         pg.display.update()
 
         #   draws the random points
-        num_dots += draw_dots_cartesian(window, region, circle_radius)
+        num_dots += draw_dots_cartesian(window)
         #   if there are 1000 dots stop making new dots then terminate program
         if num_dots == 1000:
             sleep(10.0)
