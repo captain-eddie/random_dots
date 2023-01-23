@@ -57,7 +57,7 @@ def draw_dots_polar(window):
         given the region of the window that is enclosed by the circle
         draw RED dots at random locations in the circle using polar coordinates
     '''
-    r = uniform(0, circle_radius - (circle_width * dot_radius))
+    r = uniform(circle_center[0], circle_radius - (circle_width * dot_radius))
     theta = uniform(0, 360)
 
     dot_pos = polar_to_rect((r, theta))
